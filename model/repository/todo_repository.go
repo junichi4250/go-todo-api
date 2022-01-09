@@ -45,7 +45,7 @@ func (tr *todoRepository) GetTodos() (todos []entity.TodoEntity, err error) {
 }
 
 func (tr *todoRepository) InsertTodo(todo entity.TodoEntity) (id int, err error) {
-	_, err = Db.Exec("INSERT INTO todo (title, content VALUES (?, ?)", todo.Title, todo.Content)
+	_, err = Db.Exec("INSERT INTO todo (title, content) VALUES (?, ?)", todo.Title, todo.Content)
 	if err != nil {
 		log.Print(err)
 		return
@@ -55,7 +55,7 @@ func (tr *todoRepository) InsertTodo(todo entity.TodoEntity) (id int, err error)
 }
 
 func (tr *todoRepository) UpdateTodo(todo entity.TodoEntity) (err error) {
-	_, err = Db.Exec("UPDATE todo SET title = ?, content = ? WHERE id = ?", todo.Title, todo, todo.Content, todo.Id)
+	_, err = Db.Exec("UPDATE todo SET title = ?, content = ? WHERE id = ?", todo.Title, todo.Content, todo.Id)
 	return
 }
 
